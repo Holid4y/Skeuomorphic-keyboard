@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Keyboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="keyboard">
+        <div class="keyboard_box">
+            <div class="row">
+                <div class="key"><span value="ESCAPE">Esc</span></div>
+                <div class="key"><span value="1">1</span></div>
+                <div class="key"><span value="2">2</span></div>
+                <div class="key"><span value="3">3</span></div>
+                <div class="key"><span value="4">4</span></div>
+                <div class="key"><span value="5">5</span></div>
+                <div class="key"><span value="6">6</span></div>
+                <div class="key"><span value="7">7</span></div>
+                <div class="key"><span value="8">8</span></div>
+                <div class="key"><span value="9">9</span></div>
+                <div class="key"><span value="0">0</span></div>
+                <div class="key"><span value="-">-</span></div>
+                <div class="key"><span value="=">=</span></div>
+                <div class="key key-del"><span value="BACKSPACE"><</span></div>
+            </div>
+            <div class="row">
+                <div class="key key-tab"><span value="Tab">Tab</span></div>
+                <div class="key"><span value="Q">Q</span></div>
+                <div class="key"><span value="W">W</span></div>
+                <div class="key"><span value="E">E</span></div>
+                <div class="key"><span value="R">R</span></div>
+                <div class="key"><span value="T">T</span></div>
+                <div class="key"><span value="Y">Y</span></div>
+                <div class="key"><span value="U">U</span></div>
+                <div class="key"><span value="I">I</span></div>
+                <div class="key"><span value="O">O</span></div>
+                <div class="key"><span value="P">P</span></div>
+                <div class="key"><span value="[">[</span></div>
+                <div class="key"><span value="]">]</span></div>
+                <div class="key key-slash"><span value="\">\</span></div>
+            </div>
+            <div class="row">
+                <div class="key key-caps"><span value="CAPSLOCK">Caps</span></div>
+                <div class="key"><span value="A">A</span></div>
+                <div class="key"><span value="S">S</span></div>
+                <div class="key"><span value="D">D</span></div>
+                <div class="key"><span value="F">F</span></div>
+                <div class="key"><span value="G">G</span></div>
+                <div class="key"><span value="H">H</span></div>
+                <div class="key"><span value="J">J</span></div>
+                <div class="key"><span value="K">K</span></div>
+                <div class="key"><span value="L">L</span></div>
+                <div class="key"><span value=";">;</span></div>
+                <div class="key"><span value="'">'</span></div>
+                <div class="key key-enter"><span value="Enter">Enter</span></div>
+            </div>
+            <div class="row">
+                <div class="key key-shift"><span value="Shift">Shift</span></div>
+                <div class="key"><span value="Z">Z</span></div>
+                <div class="key"><span value="X">X</span></div>
+                <div class="key"><span value="C">C</span></div>
+                <div class="key"><span value="V">V</span></div>
+                <div class="key"><span value="B">B</span></div>
+                <div class="key"><span value="N">N</span></div>
+                <div class="key"><span value="M">M</span></div>
+                <div class="key"><span value=",">,</span></div>
+                <div class="key"><span value=".">.</span></div>
+                <div class="key"><span value="?">?</span></div>
+                <div class="key key-shift"><span value="Shift">Shift</span></div>
+            </div>
+            <div class="row">
+                <div class="key key-etc"><span value="Control">CTRL</span></div>
+                <div class="key key-etc"><span value="Meta">WIN</span></div>
+                <div class="key key-etc"><span value="ALT">Alt</span></div>
+                <div class="key key-space"><span value=" ">Space</span></div>
+                <div class="key key-etc"><span value="ALT">Alt</span></div>
+                <div class="key key-etc"><span value="Control">CTRL</span></div>
+                <div class="key key-etc"><span value="Fn">FN</span></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var currentLayout = 'english';
+
+        document.addEventListener('keydown', function(event) {
+            event.preventDefault(); // Отменяем стандартное действие браузера
+            var keyPressed = event.key.toUpperCase();
+            var keys = document.querySelectorAll('.key span');
+            keys.forEach(function(key) {
+                var keyValue = key.getAttribute('value').toUpperCase();
+                if (keyValue === keyPressed) {
+                    key.parentElement.classList.add('active');
+                }
+            });
+
+            // Проверяем, нажаты ли одновременно Shift и Alt
+            if (event.altKey && event.ctrlKey ) {
+                toggleLayout();
+            }
+        });
+
+        document.addEventListener('keyup', function(event) {
+            event.preventDefault(); // Отменяем стандартное действие браузера
+            var keyPressed = event.key.toUpperCase();
+            var keys = document.querySelectorAll('.key span');
+            keys.forEach(function(key) {
+                var keyValue = key.getAttribute('value').toUpperCase();
+                if (keyValue === keyPressed) {
+                    key.parentElement.classList.remove('active');
+                }
+            });
+        });
+
+        
+        // Функция для изменения раскладки клавиатуры
+        function toggleLayout() {
+            // Получаем все клавиши
+            const keys = document.querySelectorAll('.key');
+            // Проходимся по каждой клавише
+            keys.forEach(key => {
+                // Получаем значение клавиши
+                const value = key.querySelector('span').getAttribute('value');
+                // Массивы с русскими и английскими буквами
+                const en = ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P', '[', ']', 'A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L', ';', "'", 'Z', 'X', 'C', 'V', 'B', 'N', 'M', ',', '.'];
+                const ru = ['Й', 'Ц', 'У', 'К', 'Е', 'Н', 'Г', 'Ш', 'Щ', 'З', 'Х', 'Ъ', 'Ф', 'Ы', 'В', 'А', 'П', 'Р', 'О', 'Л', 'Д', 'Ж', 'Э', 'Я', 'Ч', 'С', 'М', 'И', 'Т', 'Ь', 'Б', 'Ю'];
+                // Индекс текущего значения в массиве
+                const index = en.indexOf(value);
+                // Если значение есть в массиве, меняем его
+                if (index !== -1) {
+                    key.querySelector('span').textContent = ru[index];
+                    key.querySelector('span').setAttribute('value', ru[index]);
+                } else if (ru.indexOf(value) !== -1) {
+                    key.querySelector('span').textContent = en[ru.indexOf(value)];
+                    key.querySelector('span').setAttribute('value', en[ru.indexOf(value)]);
+                }
+            });
+        }
+
+    </script>
+</body>
+</html>

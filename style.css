@@ -1,0 +1,86 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f0f0f0;
+    font-family: Arial, sans-serif;
+}
+
+.keyboard {
+    display: inline-block;
+    padding: 8px;
+    background-color: #D9D9D9;
+    border-radius: 10px;
+    box-shadow: 8px 15px 5px #C8C8C8;
+    transform: rotate(3deg);
+}
+.keyboard_box {
+    display: inline-block;
+    padding: 12px;
+    background-color: #BCBCBC;
+    border-radius: 8px;
+    box-shadow: inset 0px 4px 4px #00000025;
+}
+
+.row {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+
+.key {
+    position: relative;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 15px;
+    background: #CECDCD;
+    border-radius: 8px;
+    box-shadow: 3px 6px 5px #BCBCBC;
+    font-size: 16px;
+    color: #4f5864;
+    transform-style: preserve-3d;
+    transform: perspective(1000px);
+}
+
+/* CECDCD
+BCBCBC */
+
+.key::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #CECDCD;
+    border-radius: 8px;
+    box-shadow: 3px 6px 5px #bebebe, -3px -6px 5px #BCBCBC,
+                inset 3px 6px 5px #BCBCBC, inset -10px -10px 10px #999999;
+    transform: translateY(10px) translateZ(-10px);
+}
+
+.key span {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+}
+
+.active {
+    outline: solid 1px #8f8f8f;
+    transform: translateY(3px);
+}
+
+
+.key{
+    width: 25px;
+    height: 25px;
+}
+
+.key-del { width: 45px; }
+.key-tab { width: 40px; }
+.key-slash { width: 30px; }
+.key-caps { width: 65px; }
+.key-enter { width: 70px; }
+.key-shift { width: 100px; }
+.key-etc { width: 30px; }
+.key-space { width: 470px; }
